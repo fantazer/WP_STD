@@ -1,5 +1,55 @@
 $(document).ready(function(){
 
+
+	//tabs
+	$('.tab-head__el').click(function(){
+		$('.tab-head__el').removeClass('tab-head__el--active');
+		$(this).addClass('tab-head__el--active');
+		var currnetHead = $(this).index();
+		console.log(currnetHead);
+		$('.tab-content__el').each(function(){
+				if($(this).index()==currnetHead){
+					$(this).addClass('tab-content__el--active')
+				}else{
+					$(this).removeClass('tab-content__el--active')
+				}
+			})
+	});
+	var owl = $('.tab-content'),
+        owlOptions = {
+            loop: false,
+            margin: 10,
+            items : 1,
+            singleItem : true,
+    				autoHeight : true,
+        };
+
+    if ( $(window).width() < 768 ) {
+    		owl.addClass('owl-carousel');
+        var owlActive = owl.owlCarousel(owlOptions);
+    } else {
+    		owl.removeClass('owl-carousel');
+        owl.addClass('off');
+    }
+
+    $(window).resize(function() {
+        if ( $(window).width() < 768 ) {
+    				owl.addClass('owl-carousel');
+            if ( $('.tab-content').hasClass('off') ) {
+                var owlActive = owl.owlCarousel(owlOptions);
+                owl.removeClass('off');
+            }
+        } else {
+    				owl.removeClass('owl-carousel');
+            if ( !$('.tab-content').hasClass('off') ) {
+                owl.addClass('off').trigger('destroy.owl.carousel');
+                owl.find('.owl-stage-outer').children(':eq(0)').unwrap();
+            }
+        }
+    });
+
+	//tabs===end
+
 	//calc
 	var getCaclMath = function(){
 		$('.calc-get-contact').show();

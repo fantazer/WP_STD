@@ -28,9 +28,11 @@ Template Name: service
 						Разовые
 					</div>
 					<div class="service__wraper">
+
 							 <?
 								$args = array(
 								'cat'=> 9,
+								'posts_per_page' => 3,
 								/*'orderby' => 'date',
 								'order' => 'DESC'*/
 								);
@@ -72,6 +74,7 @@ Template Name: service
 							 <?
 								$args = array(
 								'cat'=> 10,
+								'posts_per_page' => 3,
 								/*'orderby' => 'date',
 								'order' => 'DESC'*/
 								);
